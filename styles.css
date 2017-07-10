@@ -1,0 +1,11 @@
+.this {
+  border: 1px solid black;
+  float: left;
+  height: 18px;
+  width: 18px;
+
+}
+
+#grid {
+  margin: 100px auto;
+}
