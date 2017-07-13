@@ -9,3 +9,15 @@
 #grid {
   margin: 100px auto;
 }
+
+.snake {
+  background: blue;
+}
+
+.purple {
+  background: purple;
+}
+
+.green {
+  background: green;
+}
