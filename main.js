@@ -73,10 +73,6 @@ $(document).ready(function(){
   	  }
   	};
 
-    var $gridBorder = {
-
-    }
-
     var $food = {
       refill: function(){
         var result = Math.floor(Math.random() * $('.this').length);
@@ -185,12 +181,40 @@ $(document).ready(function(){
     // var updateSize = function(){
     //   return $snake.size;
     // }
+
+
     function render(e){
       Grid();
-      $snake.init_position()};
-    render();
-    $food.init();
+      $snake.init_position()
+    };
+
+    var newGame = function(){
+        $snake.current_direction = 'right';
+        $snake.direction = '';
+        $snake.position = [189, 190, 191];
+        $snake.size = [2]
+    }
+
+      var checkBorder = function(){
+        function gameOver() {
+          alert("GAME OVER");
+          $('#grid').empty();
+          gameStart();
+          newGame();
+        }
+        var upArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        var rightArray = [20, 40, 60, 80, 100, 120, 140, 160, 180]
+         if (upArray.indexOf($snake.position[$snake.size - 2]) > -1 && $snake.direction == 'up') {
+           gameOver();
+         }
+      }
+      function gameStart() {
+        render();
+        $food.init();
+      }
+    gameStart();
     setInterval(function(){
       move();
+      checkBorder();
     }, 150);
   });
