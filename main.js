@@ -3,10 +3,34 @@ $(document).ready(function(){
     $("body").css("height", "50%");
     $("body").css("margin", "0 auto");
     $("body").css("background", "red");
+    var checkBorder = function(){
+      function gameOver() {
+        $('#message').text("GAME OVER");
+        $('#grid').empty();
+        gameStart();
+        newGame();
+      }
+      var topArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+      var rightArray = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400]
+      var leftArray = [1, 21, 41, 61, 81, 101, 121, 141, 161, 181, 201, 221, 241, 261, 281, 301, 321, 341, 361, 381]
+      var bottomArray = [381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400]
+      if (topArray.indexOf($snake.position[$snake.size - 1]) > -1 && $snake.direction == 'up') {
+        gameOver();
+      }
+      if (rightArray.indexOf($snake.position[$snake.size - 1]) > -1 && $snake.direction == 'right') {
+        gameOver();
+      }
+      if (leftArray.indexOf($snake.position[$snake.size - 1]) > -1 && $snake.direction == 'left') {
+        gameOver();
+      }
+      if (bottomArray.indexOf($snake.position[$snake.size - 1]) > -1 && $snake.direction == 'down') {
+        gameOver();
+      }
+    }
     $(document).on("keydown", function(e){
       $snake.current_direction = e.which;
       console.log($snake.opposite_direction[$snake.current_direction]);
-      if ($snake.current_direction != $snake.opposite_direction[$snake.direction]){
+      if ($snake.opposite_direction[$snake.direction] != $snake.current_direction){
         $snake.direction = $snake.current_direction;
       };
 
@@ -36,7 +60,7 @@ $(document).ready(function(){
     });
 
     var $snake = {
-      value: 'O',
+      value: '',
       init_position: function(){
         // $("#9.9").html($snake.value).css("background", "blue");
         $("#grid div:nth-child(190)").html($snake.value).addClass("snake");
@@ -186,6 +210,7 @@ $(document).ready(function(){
     function render(e){
       Grid();
       $snake.init_position()
+      $('#message').text("Snake size = " + $snake.size);
     };
 
     var newGame = function(){
@@ -195,26 +220,15 @@ $(document).ready(function(){
         $snake.size = [2]
     }
 
-      var checkBorder = function(){
-        function gameOver() {
-          alert("GAME OVER");
-          $('#grid').empty();
-          gameStart();
-          newGame();
-        }
-        var upArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-        var rightArray = [20, 40, 60, 80, 100, 120, 140, 160, 180]
-         if (upArray.indexOf($snake.position[$snake.size - 2]) > -1 && $snake.direction == 'up') {
-           gameOver();
-         }
-      }
-      function gameStart() {
-        render();
-        $food.init();
-      }
+    function gameStart() {
+      render();
+      $food.init();
+      $food.total = [193];
+    }
     gameStart();
     setInterval(function(){
-      move();
       checkBorder();
+      move();
+      $('#message').text("Snake size = " + $snake.size);
     }, 150);
   });

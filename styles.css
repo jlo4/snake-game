@@ -1,13 +1,28 @@
 .this {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   float: left;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
 
 }
 
+h1 {
+  margin: 100px auto 0 auto;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#message {
+  font-size: 3rem;
+  text-align: center;
+}
+
 #grid {
-  margin: 100px auto;
+  margin: 50px auto;
+  padding: 0;
 }
 
 .snake {
