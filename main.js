@@ -35,9 +35,12 @@ $(document).ready(function(){
       }
     }
     var checkDuplicate = function(arr){
+      arr.slice().sort();
       for (var i = 0; i < arr.length - 2; i++){
         if (arr[i + 1] == arr[i]){
           gameOver();
+        } else {
+          $snake.body();
         }
       }
     }
@@ -175,6 +178,7 @@ $(document).ready(function(){
           $food.refill($snake.position);
         } else if($snake.direction == 'right'){
           $snake.position.push($snake.position[$snake.size[0]] + 1);
+          // checkDuplicate($snake.position);
           $snake.body();
           $('#grid div:nth-child(' + $snake.position[0] + ')').html("").removeClass("snake");
         // }
@@ -204,6 +208,7 @@ $(document).ready(function(){
             }
             $('#grid div:nth-child(' + $snake.position[0] + ')').html("").removeClass("snake");
             console.log($snake.position);
+            // checkDuplicate($snake.position);
             $snake.position.shift(0);
         } else if(($snake.direction == 'down') && ($snake.position[$snake.size[0]] ===  $food.total[0])) {
             $('#grid div:nth-child(' + $food.total[0] + ')').removeClass("green");
@@ -224,6 +229,7 @@ $(document).ready(function(){
             }
             $('#grid div:nth-child(' + $snake.position[0] + ')').html("").removeClass("snake");
             console.log($snake.position);
+            // checkDuplicate($snake.position);
             $snake.position.shift(0);
        } else if(($snake.direction == 'up') && ($snake.position[$snake.size[0]] ===  $food.total[0])) {
             $('#grid div:nth-child(' + $food.total[0] + ')').removeClass("green");
@@ -244,6 +250,7 @@ $(document).ready(function(){
             }
             $('#grid div:nth-child(' + $snake.position[0] + ')').html("").removeClass("snake");
             console.log($snake.position);
+            // checkDuplicate($snake.position);
             $snake.position.shift(0);
       }
     }
