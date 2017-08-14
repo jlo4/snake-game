@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("body").css("width", "50%");
     $("body").css("height", "50%");
     $("body").css("margin", "0 auto");
-    $("body").css("background", "red");
+    // $("body").css("background", "red");
 
     function gameOver() {
       $('#message').text("GAME OVER");
@@ -272,7 +272,8 @@ $(document).ready(function(){
     }
     $("#grid").css("width", "400");
     $("#grid").css("height", "400");
-    $("#grid").css("background", "purple");
+    // $("#grid").css("background", "purple");
+    $("#grid").addClass("purple");
     // var updateSize = function(){
     //   return $snake.size;
     // }
