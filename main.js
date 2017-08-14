@@ -11,7 +11,7 @@ $(document).ready(function(){
       newGame();
     }
 
-    var checkBorder = function(){
+    var checkBorder = function(arr){
       var topArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
       var rightArray = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400]
       var leftArray = [1, 21, 41, 61, 81, 101, 121, 141, 161, 181, 201, 221, 241, 261, 281, 301, 321, 341, 361, 381]
@@ -33,17 +33,33 @@ $(document).ready(function(){
           gameOver();
         }
       }
+      checkDuplicate($snake.position);
     }
-    var checkDuplicate = function(arr){
-      arr.slice().sort();
-      for (var i = 0; i < arr.length - 2; i++){
-        if (arr[i + 1] == arr[i]){
-          gameOver();
-        } else {
-          $snake.body();
+    var checkDuplicate = function(arr) {
+      if (arr.length < 4) {
+        for (var i = 0; i < arr.length - 2; i++){
+          if (arr[arr.length - 2] == arr[i]){
+            gameOver();
+          }
         }
-      }
+      } else if (arr.length >= 4) {
+            for (var i = 0; i < arr.length - 2; i++){
+              if (arr[arr.length - 1] == arr[i]){
+                gameOver();
+              }
+            }
+        }
     }
+    // var checkDuplicate = function(arr){
+    //   // arr.slice().sort();
+    //   for (var i = 0; i < arr.length - 2; i++){
+    //     if (arr[arr.length - 1] == arr[i]){
+    //       gameOver();
+    //     // } else {
+    //     //   $snake.body();
+    //     }
+    //   }
+    // }
     $(document).on("keydown", function(e){
       $snake.current_direction = e.which;
       // function oppdir() {
