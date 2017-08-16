@@ -209,7 +209,7 @@ $(document).ready(function(){
       $food.init();
       $food.total = [193];
     }
-
+    
     gameStart();
       setInterval(function(){
         checkBorder();
